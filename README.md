@@ -1,4 +1,4 @@
-Typescript React Boilerplate
-============================
+Typescript React Launchpad
+==========================
 
-Based on [cburbank/react-boilerplate](https://github.com/cburbank/react-boilerplate)
+More opinionated than a boilerplate
