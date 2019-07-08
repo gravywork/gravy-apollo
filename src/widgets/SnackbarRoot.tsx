@@ -8,9 +8,9 @@ import Text from '@/components/Text'
 
 import Portal from '@/widgets/Portal'
 
+import { withState } from '@/state'
 import { hide, selectIfVisible, selectMessage, selectType } from '@/state/snackbar'
 
-import { withState } from '@/util/provider'
 
 const ICONS = {
   success: 'check',

@@ -15,11 +15,3 @@ export const withConsumer = (Consumer, ...stateKeys) => (Component) => (props) =
     })}
   </Consumer>
 )
-
-export const withState = (select, consumerProps = {}) => (Component) => props => (
-  <StateConsumer {...consumerProps} select={select}>
-    {(state) => (
-      <Component {...state} {...props} />
-    )}
-  </StateConsumer>
-)

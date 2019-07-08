@@ -1,15 +1,16 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 import Overlay from '@/widgets/Overlay'
 
+import { withState } from '@/state'
 import { hide, selectComponent, selectProps } from '@/state/modal'
 
-import { withState } from '@/util/provider'
-
-const ModalRoot = ({ component: Component, props }) => (
+const ModalRoot = ({ component: Component, props, ...rest }) => (
   Component
     ? <Overlay onClickOut={hide}>
         {React.createElement(Component, {
+          ...rest,
           ...props,
           onRequestClose: hide
         })}
@@ -17,7 +18,9 @@ const ModalRoot = ({ component: Component, props }) => (
     : null
 )
 
+const Connected = withRouter(ModalRoot)
+
 export default withState(state => ({
   component: selectComponent(state),
   props: selectProps(state)
-}))(ModalRoot)
+}))(Connected)

@@ -1,6 +1,6 @@
-import createState from './createState'
+import createState from 'react-immer-state'
 
-const { StateConsumer, StateProvider, mutate } = createState({
+const { StateConsumer, StateProvider, mutate, withState } = createState({
   modal: {
     component: null,
     props: {}
@@ -12,6 +12,6 @@ const { StateConsumer, StateProvider, mutate } = createState({
   }
 })
 
-export { StateConsumer, StateProvider }
+export { StateConsumer, StateProvider, withState }
 
 export default mutate

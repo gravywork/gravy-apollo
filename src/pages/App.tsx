@@ -16,9 +16,9 @@ const App = () => (
   <ThemeProvider theme={theme}>
     <StateProvider>
       <GlobalStyle />
-      <ModalRoot />
       <SnackbarRoot />
       <Router>
+        <ModalRoot />
         <Switch>
           <Route path='/' render={() => 'Hello world!'} />
         </Switch>
