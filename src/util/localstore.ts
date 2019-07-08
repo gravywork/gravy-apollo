@@ -1,3 +1,5 @@
+export const AUTH_KEY = 'token'
+
 export default {
   clear: () => window.localStorage.clear(),
   get: (key: string) => JSON.parse(window.localStorage.getItem(key)),

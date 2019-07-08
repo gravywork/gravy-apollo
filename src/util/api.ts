@@ -2,59 +2,64 @@ import 'whatwg-fetch'
 
 import qs from 'querystring'
 
-import ls from '@/util/localstore'
+import ls, { AUTH_KEY } from '@/util/localstore'
+import { deepTransformKeys } from '@/util/object'
+import { toCamelCase, toSnakeCase } from '@/util/text'
 
-export const BASE_URL = 'http://0.0.0.0:3000/api'
+import { API_BASE_URL } from '@/settings'
 
 const responseHandler = (response: Response) => {
-  if (response.status < 300) return response.json()
+  if (response.status < 300) {
+    return response.json()
+      .then(body => deepTransformKeys(body, toCamelCase))
+  }
   throw response
 }
 
-const get = (url: string, config: object = {}) => (
-  fetch(`${BASE_URL}${url}?${qs.stringify(config.params)}`, {
-    ...config,
+const defaultHeaders = () => ({
+  'Accept': 'application/json',
+  'Authorization': `Bearer ${ls.get(AUTH_KEY)}`
+})
+
+const parseBody = (body: any) => {
+  if (!body) {
+    return ({ body: undefined, bodyHeaders: {} })
+  }
+
+  if (body.toString() === '[object FormData]') {
+    return ({
+      body,
+      bodyHeaders: {} // automatically set by browser
+    })
+  }
+
+  return ({
+    body: JSON.stringify(deepTransformKeys(body, toSnakeCase)),
+    bodyHeaders: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+const request = (method) => (url, config = {}) => {
+  const { body, bodyHeaders } = parseBody(config.body)
+  const params = qs.stringify(config.params)
+
+  return fetch(`${API_BASE_URL}${url}?${params}`, {
+    method,
+    body,
     headers: {
-      Accept: 'application/json',
-      Authorization: `Bearer ${ls.get('token')}`,
-      ...config.headers
+      ...defaultHeaders(),
+      ...config.headers,
+      ...bodyHeaders
     }
   })
     .then(responseHandler)
-)
-
-const post = (url: string, config: object = {}) => (
-  fetch(`${BASE_URL}${url}`, {
-    ...config,
-    body: JSON.stringify(config.body),
-    headers: {
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${ls.get('token')}`,
-      'Content-Type': 'application/json',
-      ...config.headers
-    },
-    method: 'POST'
-  })
-    .then(responseHandler)
-)
-
-const del = (url: string, config: object = {}) => (
-  fetch(`${BASE_URL}${url}`, {
-    ...config,
-    body: JSON.stringify(config.body),
-    headers: {
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${ls.get('token')}`,
-      'Content-Type': 'application/json',
-      ...config.headers
-    },
-    method: 'DELETE'
-  })
-    .then(responseHandler)
-)
+}
 
 export default {
-  del,
-  get,
-  post
+  del: request('DELETE'),
+  get: request('GET'),
+  post: request('POST'),
+  put: request('PUT')
 }
