@@ -1,19 +1,21 @@
 import styled from 'styled-components'
 
 const Input = styled.input`
-  padding: 0.75rem 1.25rem;
+  padding: 0.625rem 1.125rem;
   width: 100%;
 
-  border: 1px solid ${p => p.theme.black16};
+  background-color: white;
+  border: 1px solid ${p => p.theme.black8};
   border-radius: 3px;
   outline: none;
 
-  font-family: ${p => p.theme.fontsans};
+  font-family: ${p => p.theme.font};
   font-size: 0.875rem;
   line-height: 1;
 
   &:focus {
-    border-color: ${p => p.theme.primary500};
+    border-color: ${p => p.theme.black88};
+    outline: 1px solid ${p => p.theme.black88};
   }
 
   &::-webkit-input-placeholder {
