@@ -1,4 +1,10 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+const fitStyles = css`
+  > * {
+    flex: 1;
+  }
+`
 
 const ActionRow = styled.div`
   align-items: center;
@@ -8,6 +14,8 @@ const ActionRow = styled.div`
   > * + * {
     margin-left: ${p => p.gutter}rem;
   }
+
+  ${p => p.fit && fitStyles}
 `
 
 ActionRow.defaultProps = {
