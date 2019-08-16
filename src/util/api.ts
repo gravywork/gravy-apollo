@@ -1,6 +1,6 @@
 import 'whatwg-fetch'
 
-import qs from 'querystring'
+import qs from 'query-string'
 
 import ls, { AUTH_KEY } from '@/util/localstore'
 import { deepTransformKeys } from '@/util/object'

@@ -1,6 +1,7 @@
 import createState from 'react-immer-state'
 
 const { StateConsumer, StateProvider, mutate, withState } = createState({
+  language: 'en',
   modal: {
     component: null,
     props: {}

@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components'
 
 import GlobalStyle from '@/components/GlobalStyle'
 
+import LanguageDetector from '@/widgets/LanguageDetector'
 import ModalRoot from '@/widgets/ModalRoot'
 import SnackbarRoot from '@/widgets/SnackbarRoot'
 
@@ -18,6 +19,7 @@ const App = () => (
       <GlobalStyle />
       <SnackbarRoot />
       <Router>
+        <LanguageDetector />
         <ModalRoot />
         <Switch>
           <Route path='/' render={() => 'Hello world!'} />
