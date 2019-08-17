@@ -6,9 +6,11 @@ import Overlay from '@/widgets/Overlay'
 import { withState } from '@/state'
 import { hide, selectComponent, selectProps } from '@/state/modal'
 
+const noOp = () => undefined
+
 const ModalRoot = ({ component: Component, props, ...rest }) => (
   Component
-    ? <Overlay onClickOut={hide}>
+    ? <Overlay onClickOut={Component.disableClickout ? noOp : hide}>
         {React.createElement(Component, {
           ...rest,
           ...props,
