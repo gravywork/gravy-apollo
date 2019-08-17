@@ -1,24 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
-
-const Wrapper = styled.label`
-  align-items: center;
-  display: flex;
-
-  position: relative;
-
-  cursor: pointer;
-
-  > input {
-    height: 0;
-    width: 0;
-    user-select: none;
-
-    position: absolute;
-
-    opacity: 0;
-  }
-`
+import styled, { css } from 'styled-components'
 
 const Box = styled.div`
   height: 1.25rem;
@@ -47,8 +28,44 @@ const Box = styled.div`
   }
 
   input:checked + & {
-    background-color: ${p => p.theme.black88};
+    background-color: ${p => p.theme.primary500};
+    border-color: ${p => p.theme.primary500};
   }
+`
+
+const disabledStyles = css`
+  color: ${p => p.theme.black32};
+
+  ${Box} {
+    background-color: ${p => p.theme.black4};
+
+    &::after {
+      border-color: transparent;
+    }
+  }
+`
+
+const Wrapper = styled.label`
+  align-items: center;
+  display: flex;
+
+  position: relative;
+
+  cursor: pointer;
+
+  font-size: 0.875rem;
+
+  > input {
+    height: 0;
+    width: 0;
+    user-select: none;
+
+    position: absolute;
+
+    opacity: 0;
+  }
+
+  ${p => p.disabled && disabledStyles};
 `
 
 class Checkbox extends Component {
@@ -57,12 +74,13 @@ class Checkbox extends Component {
   )
 
   public render() {
-    const { children, name, value } = this.props
+    const { children, disabled, name, value } = this.props
 
     return (
-      <Wrapper htmlFor={name}>
+      <Wrapper disabled={disabled} htmlFor={name}>
         <input
           id={name}
+          disabled={disabled}
           name={name}
           checked={value}
           type='checkbox'
