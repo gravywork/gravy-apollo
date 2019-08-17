@@ -5,7 +5,7 @@ const PageWrapper = styled.section`
   align-items: center;
   display: flex;
   justify-content: center;
-  padding: ${p => p.padding}vh 0;
+  padding: 4rem 0;
 `
 
 const FormColumn = styled.div`
@@ -13,8 +13,8 @@ const FormColumn = styled.div`
   width: 100%;
 `
 
-const FormLayout = ({ children, padding = 25 }) => (
-  <PageWrapper padding={padding}>
+const FormLayout = ({ children }) => (
+  <PageWrapper>
     <FormColumn>
       {children}
     </FormColumn>
