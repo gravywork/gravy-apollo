@@ -2,19 +2,15 @@ const webpack = require('webpack')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
-const OfflinePlugin = require('offline-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 module.exports = {
   mode: 'production',
-
   devtool: 'cheap-module-source-map',
-
   output: {
     filename: '[name].[chunkhash:8].js',
     chunkFilename: '[name].[chunkhash:8].chunk.js'
   },
-
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
@@ -43,17 +39,6 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new CompressionPlugin(),
-    new OfflinePlugin({
-      excludes: ['**/*.map'],
-      publicPath: '/',
-      updateStrategy: 'changed',
-      autoUpdate: 1000 * 60 * 2,
-      externals: ['/'],
-      ServiceWorker: {
-        events: true,
-        navigateFallbackURL: '/'
-      }
-    }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false
