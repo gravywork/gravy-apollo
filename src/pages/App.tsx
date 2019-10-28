@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { Grommet } from 'grommet'
 
 import Home from '@/pages/Home'
 import GlobalStyle from '@/components/GlobalStyle'
@@ -22,7 +23,7 @@ const client = new ApolloClient({
 
 const App = () => (
   <ApolloProvider client={client}>
-    <ThemeProvider theme={theme}>
+    <Grommet theme={theme}>
       <StateProvider>
         <GlobalStyle />
         <SnackbarRoot />
@@ -34,7 +35,7 @@ const App = () => (
           </Switch>
         </Router>
       </StateProvider>
-    </ThemeProvider>
+    </Grommet>
   </ApolloProvider>
 )
 
