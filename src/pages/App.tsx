@@ -2,7 +2,10 @@ import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 
+import Home from '@/pages/Home'
 import GlobalStyle from '@/components/GlobalStyle'
 
 import LanguageDetector from '@/widgets/LanguageDetector'
@@ -13,20 +16,26 @@ import theme from '@/theme'
 
 import { StateProvider } from '@/state'
 
+const client = new ApolloClient({
+  uri: 'https://dog-graphql-api.glitch.me/graphql',
+})
+
 const App = () => (
-  <ThemeProvider theme={theme}>
-    <StateProvider>
-      <GlobalStyle />
-      <SnackbarRoot />
-      <Router>
-        <LanguageDetector />
-        <ModalRoot />
-        <Switch>
-          <Route path='/' render={() => 'Hello world!'} />
-        </Switch>
-      </Router>
-    </StateProvider>
-  </ThemeProvider>
+  <ApolloProvider client={client}>
+    <ThemeProvider theme={theme}>
+      <StateProvider>
+        <GlobalStyle />
+        <SnackbarRoot />
+        <Router>
+          <LanguageDetector />
+          <ModalRoot />
+          <Switch>
+            <Route path='/' component={Home} />
+          </Switch>
+        </Router>
+      </StateProvider>
+    </ThemeProvider>
+  </ApolloProvider>
 )
 
 export default hot(App)
