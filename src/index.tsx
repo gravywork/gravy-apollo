@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Grommet, grommet } from 'grommet'
+import theme from './theme'
 
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -49,7 +51,7 @@ const IS_LOGGED_IN = gql`
   }
 `;
 
-function IsLoggedIn() {
+const IsLoggedIn = () => {
   const { data } = useQuery(IS_LOGGED_IN);
   return data.isLoggedIn ? <Pages /> : <Login />;
 }
@@ -57,7 +59,9 @@ function IsLoggedIn() {
 ReactDOM.render(
 
   <ApolloProvider client={client}>
-    <IsLoggedIn />
+    <Grommet theme={theme} full>
+      <IsLoggedIn />
+    </Grommet>
   </ApolloProvider>,
   document.getElementById('root'),
 );
