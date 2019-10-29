@@ -14,7 +14,7 @@ const GET_DOGS = gql`
   }
 `
 
-const Home = ({ theme }) => {
+const Home = () => {
   const [test, setTest] = useState('')
   const { loading, error, data, client } = useQuery(GET_DOGS);
 
