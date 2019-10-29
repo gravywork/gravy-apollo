@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import { Box, Button, CheckBox, TextInput, RadioButtonGroup, Select, Text } from 'grommet'
+import { Box, Button, TextInput, Text } from 'grommet'
+import { BrowserRouter as Router, Link } from 'react-router-dom'
 
 const GET_DOGS = gql`
   {
@@ -15,74 +16,78 @@ const GET_DOGS = gql`
 `
 
 const StyledInput = styled(TextInput)`
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+`
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  align-self: center;
 `
 
 const Login = () => {
-  const [test, setTest] = useState('one')
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [marketing, setMarketing] = useState('')
+  const [password, setPassword] = useState('')
   const { loading, error, data, client } = useQuery(GET_DOGS);
 
   return (
-    <Box
-      height='100vh'
-      width='100vw'
-    >
+    <Router>
       <Box
-        pad='16px'
-        height='500px'
-        width='500px'
-        margin='auto'
+        height='100vh'
+        width='100vw'
       >
-        <Text
-          size='large'
-          weight='bold'
-          margin={{ bottom: '16px' }}
+        <Box
+          width='500px'
+          margin='auto'
         >
-          Login
-        </Text>
-        <RadioButtonGroup
-          name="test"
-          options={['one', 'two']}
-          value={test}
-          onChange={e => setTest(e.target.value)}
-          margin={{ bottom: '16px' }}
-        />
-        <StyledInput
-          placeholder="name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          size='small'
-        />
-        <StyledInput
-          placeholder="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          size='small'
-        />
-        <StyledInput
-          placeholder="phone"
-          value={phone}
-          onChange={e => setPhone(e.target.value)}
-          size='small'
-        />
-        <Select
-          placeholder='How did you hear about us?'
-          options={['App Store', 'Internet', 'Word of Mouth']}
-          value={marketing}
-          onChange={({ option }) => setMarketing(option)}
-          size='small'
-        />
-        <Button
-          label="Submit"
-          onClick={() => {}}
-          margin={{ top: '16px' }}
-        />
-      </Box>
-    </Box>  
+          <Box
+            height='xxsmall'
+            direction='row'
+            justify='between'
+            margin={{ bottom: '16px' }}
+          >
+            <Text
+              size='xxlarge'
+              weight='bold'
+            >
+              Login
+            </Text>
+            <StyledLink to='/signup'> 
+              <Text
+                size='small'
+                color='accent-4'
+              >
+                  Sign Up
+              </Text>
+            </StyledLink>
+          </Box>
+          <StyledInput
+            placeholder="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            size='small'
+          />
+          <TextInput
+            placeholder="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            size='small'
+          />
+          <Box direction='row' margin={{ top: '24px' }}>
+            <Button
+              label="Login"
+              onClick={() => {}}
+            />
+            <Text
+              size='small'
+              color='accent-4'
+              margin={{ left: 'auto' }}
+            >
+              Forgot Password
+            </Text>
+          </Box>
+        </Box>
+      </Box>  
+    </Router>
   )
 }
 
