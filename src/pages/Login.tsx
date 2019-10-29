@@ -18,7 +18,7 @@ const StyledInput = styled(TextInput)`
   margin-bottom: 16px;
 `
 
-const Home = () => {
+const Login = () => {
   const [test, setTest] = useState('one')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -86,4 +86,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Login
