@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import { Box, Button, TextInput, RadioButtonGroup, Select, Text } from 'grommet'
+import { Box, Button, TextInput, Select, Text } from 'grommet'
 
 const GET_DOGS = gql`
   {
@@ -19,11 +19,11 @@ const StyledInput = styled(TextInput)`
 `
 
 const Login = () => {
-  const [test, setTest] = useState('one')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [marketing, setMarketing] = useState('')
+  const [password, setPassword] = useState('')
   const { loading, error, data, client } = useQuery(GET_DOGS);
 
   return (
@@ -38,19 +38,12 @@ const Login = () => {
         margin='auto'
       >
         <Text
-          size='large'
+          size='xxlarge'
           weight='bold'
           margin={{ bottom: '16px' }}
         >
-          Login
+          Sign Up
         </Text>
-        <RadioButtonGroup
-          name="test"
-          options={['one', 'two']}
-          value={test}
-          onChange={e => setTest(e.target.value)}
-          margin={{ bottom: '16px' }}
-        />
         <StyledInput
           placeholder="name"
           value={name}
@@ -61,6 +54,12 @@ const Login = () => {
           placeholder="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
+          size='small'
+        />
+        <StyledInput
+          placeholder="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
           size='small'
         />
         <StyledInput

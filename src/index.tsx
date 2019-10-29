@@ -10,6 +10,7 @@ import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import Pages from './pages';
+import Authentication from './pages/Authentication'
 import Login from './pages/Login';
 import { typeDefs } from './resolvers'
 
@@ -41,7 +42,7 @@ const IS_LOGGED_IN = gql`
 
 const IsLoggedIn = () => {
   const { data } = useQuery(IS_LOGGED_IN);
-  return data.isLoggedIn ? <Pages /> : <Login />;
+  return data.isLoggedIn ? <Pages /> : <Authentication />;
 }
 
 ReactDOM.render(
