@@ -7,9 +7,11 @@ const font = `-apple-system,BlinkMacSystemFont,"Segoe UI",
   Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif`
 
 export default {
-  ...colors,
-  font,
-  screens,
-  shadows,
-  sizes
+  global: {
+    colors,
+    font,
+    screens,
+    shadows,
+    sizes
+  }
 }

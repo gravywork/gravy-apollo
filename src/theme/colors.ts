@@ -1,22 +1,11 @@
-export const primary100 = '#d4bff9'
-export const primary200 = '#b794f6'
-export const primary300 = '#9965f4'
-export const primary400 = '#7e3ff2'
-export const primary500 = '#6002ee'
-export const primary600 = '#5300e8'
-export const primary700 = '#3d00e0'
-export const primary900 = '#0000d6'
-
-export const secondary300 = '#6dbeff'
-export const secondary400 = '#50aeff'
-export const secondary500 = '#378ff6'
-export const secondary600 = '#3781e8'
-
-export const red100 = '#f9cec3'
-export const red300 = '#f49078'
-export const red400 = '#f3795b'
+export const red100 = '#fac7ba'
+export const red300 = '#f57f63'
+export const red400 = '#f36342'
 export const red500 = '#f36342'
-export const red600 = '#e85d3e'
+export const red600 = '#e74020'
+export const red700 = '#d9391b'
+export const red800 = '#cb3217'
+export const red900 = '#b2250e'
 
 export const green100 = '#defabb'
 export const green300 = '#aaf255'
@@ -51,9 +40,34 @@ export const white4 = 'rgba(255,255,255,0.04)'
 export const white2 = 'rgba(255,255,255,0.02)'
 
 export const deepCove = '#130f40'
+export const warning = '#f2e17b'
 
 export const lightGray = '#f5f7f9'
 
 export const background = lightGray
 
 export const transparent = 'transparent'
+
+export const brandPrimary = '#ff9000'
+export const primary50 = '#fff2dd'
+export const primary100 = '#ffdeab'
+export const primary200 = '#ffc973'
+export const primary300 = '#ffb236'
+export const primary400 = '#ffa100'
+export const primary500 = brandPrimary
+export const primary600 = '#fb8400'
+export const primary700 = '#f67300'
+export const primary800 = '#f16200'
+export const primary900 = '#e84300'
+
+export const brandSecondary = '#01b1af'
+export const secondary50 = '#dcf1f2'
+export const secondary100 = '#a8dddc'
+export const secondary200 = '#6bc7c6'
+export const secondary300 = brandSecondary
+export const secondary400 = '#00a09c'
+export const secondary500 = '#008f88'
+export const secondary600 = '#00837b'
+export const secondary700 = '#00736b'
+export const secondary800 = '#00635b'
+export const secondary900 = '#00473d'
