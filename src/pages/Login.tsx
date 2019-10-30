@@ -9,7 +9,7 @@ const LOGIN_USER = gql`
   mutation login($email: String!) {
     login(email: $email)
   }
-`;
+`
 
 const StyledInput = styled(TextInput)`
   margin-bottom: 24px;

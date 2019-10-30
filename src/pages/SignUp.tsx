@@ -24,7 +24,7 @@ const StyledLink = styled(Link)`
   align-self: center;
 `
 
-const Login = () => {
+const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -101,4 +101,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default SignUp

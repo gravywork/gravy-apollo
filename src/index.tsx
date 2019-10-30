@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grommet, grommet } from 'grommet'
-import theme from './theme'
 
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -9,10 +8,11 @@ import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
+import theme from './theme'
+import { typeDefs } from './resolvers'
+
 import Pages from './pages';
 import Authentication from './pages/Authentication'
-
-import { typeDefs } from './resolvers'
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
