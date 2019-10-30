@@ -1,19 +1,15 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/react-hooks";
 import { Box, Button, TextInput, Text } from 'grommet'
 import { Link } from 'react-router-dom'
+import { useApolloClient, useMutation } from '@apollo/react-hooks';
 
-const GET_DOGS = gql`
-  {
-    dogs {
-      id
-      breed
-      displayImage
-    }
+const LOGIN_USER = gql`
+  mutation login($email: String!) {
+    login(email: $email)
   }
-`
+`;
 
 const StyledInput = styled(TextInput)`
   margin-bottom: 24px;
@@ -27,8 +23,17 @@ const StyledLink = styled(Link)`
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { loading, error, data, client } = useQuery(GET_DOGS);
-
+  const client = useApolloClient();
+  const [login, { loading, error }] = useMutation(
+    LOGIN_USER,
+    {
+      onCompleted({ login }) {
+        localStorage.setItem('token', login);
+        client.writeData({ data: { isLoggedIn: true } });
+      }
+    }
+  )
+  
   return (
     <>
       <Box
