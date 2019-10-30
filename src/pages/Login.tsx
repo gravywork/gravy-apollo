@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { gql } from "apollo-boost";
-import { Box, Button, TextInput, Text } from 'grommet'
+import { Box, Button, Form, TextInput, Text } from 'grommet'
 import { Link } from 'react-router-dom'
 import { useApolloClient, useMutation } from '@apollo/react-hooks';
 
@@ -35,7 +35,7 @@ const Login = () => {
   )
   
   return (
-    <>
+    <Form onSubmit={() => console.log({ email, password })}>
       <Box
         direction='row'
         justify='between'
@@ -71,8 +71,9 @@ const Login = () => {
       />
       <Box direction='row' margin={{ top: '24px' }}>
         <Button
+          primary
           label="Login"
-          onClick={() => {}}
+          type='submit'
         />
         <Text
           size='small'
@@ -82,7 +83,7 @@ const Login = () => {
           Forgot Password?
         </Text>
       </Box>
-    </>
+    </Form>
   )
 }
 

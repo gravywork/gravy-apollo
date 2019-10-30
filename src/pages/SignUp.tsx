@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import { Box, Button, TextInput, Select, Text } from 'grommet'
+import { Box, Button, Form, TextInput, Select, Text } from 'grommet'
 import { Link } from 'react-router-dom'
 
 const GET_DOGS = gql`
@@ -33,7 +33,7 @@ const Login = () => {
   const { loading, error, data, client } = useQuery(GET_DOGS);
 
   return (
-    <>
+    <Form onSubmit={() => console.log({ name, email, phone, password, marketing })}>
       <Box
         direction='row'
         justify='between'
@@ -79,19 +79,25 @@ const Login = () => {
         onChange={e => setPhone(e.target.value)}
         size='small'
       />
-      <Select
-        placeholder='How did you hear about us?'
-        options={['App Store', 'Internet', 'Word of Mouth']}
-        value={marketing}
-        onChange={({ option }) => setMarketing(option)}
-        size='small'
-      />
+      <Box
+        margin={{ bottom: '16px' }}
+        width='100%'
+      >
+        <Select
+          placeholder='How did you hear about us?'
+          options={['App Store', 'Internet', 'Word of Mouth']}
+          value={marketing}
+          onChange={({ option }) => setMarketing(option)}
+          size='small'
+        />
+      </Box>
       <Button
-        label="Submit"
-        onClick={() => {}}
-        margin={{ top: '16px' }}
+        primary
+        label='Sign Up'
+        type='submit'
+        margin={{ right: 'auto' }}
       />
-    </>
+    </Form>
   )
 }
 
