@@ -37,7 +37,6 @@ const Login = () => {
   return (
     <>
       <Box
-        height='xxsmall'
         direction='row'
         justify='between'
         margin={{ bottom: '16px' }}
@@ -53,7 +52,7 @@ const Login = () => {
             size='small'
             color='accent-4'
           >
-              Sign Up
+            Sign Up
           </Text>
         </StyledLink>
       </Box>
@@ -68,6 +67,7 @@ const Login = () => {
         value={password}
         onChange={e => setPassword(e.target.value)}
         size='small'
+        type='password'
       />
       <Box direction='row' margin={{ top: '24px' }}>
         <Button
@@ -79,7 +79,7 @@ const Login = () => {
           color='accent-4'
           margin={{ left: 'auto' }}
         >
-          Forgot Password
+          Forgot Password?
         </Text>
       </Box>
     </>

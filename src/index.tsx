@@ -11,7 +11,7 @@ import gql from 'graphql-tag';
 
 import Pages from './pages';
 import Authentication from './pages/Authentication'
-import Login from './pages/Login';
+
 import { typeDefs } from './resolvers'
 
 const cache = new InMemoryCache();

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import { Button, TextInput, Select, Text } from 'grommet'
+import { Box, Button, TextInput, Select, Text } from 'grommet'
+import { Link } from 'react-router-dom'
 
 const GET_DOGS = gql`
   {
@@ -18,6 +19,11 @@ const StyledInput = styled(TextInput)`
   margin-bottom: 16px;
 `
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  align-self: center;
+`
+
 const Login = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -28,13 +34,26 @@ const Login = () => {
 
   return (
     <>
-      <Text
-        size='xxlarge'
-        weight='bold'
+      <Box
+        direction='row'
+        justify='between'
         margin={{ bottom: '16px' }}
       >
-        Sign Up
-      </Text>
+        <Text
+          size='xxlarge'
+          weight='bold'
+        >
+          Sign Up
+        </Text>
+        <StyledLink to='/'> 
+          <Text
+            size='small'
+            color='accent-4'
+          >
+            Login
+          </Text>
+        </StyledLink>
+      </Box>
       <StyledInput
         placeholder="name"
         value={name}
@@ -52,6 +71,7 @@ const Login = () => {
         value={password}
         onChange={e => setPassword(e.target.value)}
         size='small'
+        type='password'
       />
       <StyledInput
         placeholder="phone"
