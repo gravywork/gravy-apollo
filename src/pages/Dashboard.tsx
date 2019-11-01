@@ -40,7 +40,7 @@ const Dashboard = () => {
       <Content height='100vh' width='100%'>
         {loading
           ? <div>Content Loading</div>
-          : <Text size='xlarge' margin='24px'>Welcome {data.user.firstName} {data.user.lastName}</Text>
+          : <Text weight='bold' size='xlarge' margin='24px'>Welcome {data.user.firstName} {data.user.lastName}</Text>
         }
       </Content>
     </Box>

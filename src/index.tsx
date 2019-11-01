@@ -21,6 +21,7 @@ const client = new ApolloClient({
     uri: 'http://graphy-qa.herokuapp.com/graphql',
     headers: {
       authorization: localStorage.getItem('token'),
+      'X-Gravy-Refresh': localStorage.getItem('refreshToken'),
       'client-name': 'Gravy',
     },
   }),
