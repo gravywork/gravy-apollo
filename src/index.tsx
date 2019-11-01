@@ -18,7 +18,7 @@ const cache = new InMemoryCache();
 const client = new ApolloClient({
   cache,
   link: new HttpLink({
-    uri: 'https://dog-graphql-api.glitch.me/graphql',
+    uri: 'http://graphy-qa.herokuapp.com/graphql',
     headers: {
       authorization: localStorage.getItem('token'),
       'client-name': 'Gravy',
@@ -30,7 +30,13 @@ const client = new ApolloClient({
 cache.writeData({
   data: {
     isLoggedIn: !!localStorage.getItem('token'),
-    cartItems: [],
+    user: {
+      email: '',
+      firstName: '',
+      id: '',
+      lastName: '',
+      __typename: ''
+    }
   },
 });
 

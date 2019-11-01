@@ -1,19 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/react-hooks";
 import { Box, Button, Form, TextInput, Select, Text } from 'grommet'
 import { Link } from 'react-router-dom'
-
-const GET_DOGS = gql`
-  {
-    dogs {
-      id
-      breed
-      displayImage
-    }
-  }
-`
 
 const StyledInput = styled(TextInput)`
   margin-bottom: 16px;
@@ -30,7 +18,6 @@ const SignUp = () => {
   const [phone, setPhone] = useState('')
   const [marketing, setMarketing] = useState('')
   const [password, setPassword] = useState('')
-  const { loading, error, data, client } = useQuery(GET_DOGS);
 
   return (
     <Form onSubmit={() => console.log({ name, email, phone, password, marketing })}>

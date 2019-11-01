@@ -6,8 +6,17 @@ import { Link } from 'react-router-dom'
 import { useApolloClient, useMutation } from '@apollo/react-hooks';
 
 const LOGIN_USER = gql`
-  mutation login($email: String!) {
-    login(email: $email)
+  mutation Login($email:String!, $password:String!) {
+      login(email: $email, password: $password){
+        refreshToken
+        token
+        user {
+          id
+          email
+          firstName
+          lastName
+        }
+      }
   }
 `
 
@@ -28,14 +37,16 @@ const Login = () => {
     LOGIN_USER,
     {
       onCompleted({ login }) {
-        localStorage.setItem('token', login);
-        client.writeData({ data: { isLoggedIn: true } });
+        console.log(login)
+        localStorage.setItem('token', login.token);
+        localStorage.setItem('refreshToken', login.refreshToken);
+        client.writeData({ data: { isLoggedIn: true, user: login.user } });
       }
     }
   )
   
   return (
-    <Form onSubmit={() => console.log({ email, password })}>
+    <Form onSubmit={() => login({ variables: { email, password } })}>
       <Box
         direction='row'
         justify='between'
